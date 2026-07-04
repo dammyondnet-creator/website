@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D1 Streams · Book Live Stream & Recording</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* --- Complete CSS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        body {
+            background: #0a0c1a;
+            color: #e8eeff;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(100, 130, 255, 0.15);
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .logo i {
+            color: #6c8cff;
+            font-size: 2rem;
+            filter: drop-shadow(0 0 8px rgba(80, 120, 255, 0.3));
+        }
+        .logo .d1 {
+            background: linear-gradient(135deg, #4a6cf7, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-weight: 500;
+            font-size: 1rem;
+            align-items: center;
+        }
+        .nav-links a {
+            transition: color 0.2s;
+            color: #9aabdd;
+        }
+        .nav-links a:hover {
+            color: #c8d6ff;
+        }
+        .nav-cta {
+            background: linear-gradient(135deg, #4a6cf7, #7c5cfc);
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            color: white !important;
+            font-weight: 600;
+            transition: opacity 0.2s, transform 0.15s;
+            box-shadow: 0 4px 16px rgba(74, 108, 247, 0.35);
+        }
+        .nav-cta:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+            color: white !important;
+        }
+        .hero-booking {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 3rem;
+            padding: 3rem 0 2rem;
+            align-items: start;
+        }
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+        }
+        .hero-text h1 span {
+            background: linear-gradient(135deg, #6c8cff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #9aabdd;
+            max-width: 450px;
+            margin-bottom: 2rem;
+        }
+        .hero-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .hero-features li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #c8d6ff;
+            font-size: 1rem;
+        }
+        .hero-features li i {
+            color: #6c8cff;
+            width: 1.4rem;
+            filter: drop-shadow(0 0 4px rgba(80, 120, 255, 0.25));
+        }
+        .booking-card {
+            background: #11152a;
+            border-radius: 32px;
+            padding: 2.2rem 2rem;
+            border: 1px solid rgba(100, 130, 255, 0.2);
+            box-shadow: 0 20px 48px rgba(30, 40, 100, 0.5), inset 0 1px 0 rgba(120, 160, 255, 0.08);
+        }
+        .booking-card h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #d6e0ff;
+        }
+        .booking-card .sub {
+            color: #7a8fc7;
+            margin-bottom: 1.8rem;
+            font-size: 0.95rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #b0c4f0;
+            margin-bottom: 0.4rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: #0c0f20;
+            border: 1px solid #28305a;
+            border-radius: 16px;
+            color: #e8eeff;
+            font-size: 1rem;
+            transition: border 0.25s, box-shadow 0.25s;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #6c8cff;
+            box-shadow: 0 0 0 3px rgba(80, 120, 255, 0.15);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .btn-book {
+            background: linear-gradient(135deg, #4a6cf7, #7c5cfc);
+            border: none;
+            width: 100%;
+            padding: 1rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.15s;
+            box-shadow: 0 8px 28px rgba(74, 108, 247, 0.35);
+            margin-top: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+        .btn-book:hover {
+            opacity: 0.92;
+            transform: scale(1.01);
+        }
+        .btn-calendar {
+            background: transparent;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.25s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.3rem;
+        }
+        .btn-calendar:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #ffffff;
+        }
+        .btn-calendar i {
+            font-size: 0.9rem;
+        }
+        .section-toggle {
+            display: none;
+            margin: 3rem 0 2rem;
+            padding: 2rem;
+            background: #11152a;
+            border-radius: 32px;
+            border: 1px solid rgba(100, 130, 255, 0.2);
+        }
+        .section-toggle.active {
+            display: block;
+        }
+        .section-toggle h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #d6e0ff;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .service-item {
+            background: #0c0f20;
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid #28305a;
+            transition: border 0.2s;
+        }
+        .service-item:hover {
+            border-color: #6c8cff;
+        }
+        .service-item i {
+            font-size: 2rem;
+            color: #6c8cff;
+            margin-bottom: 0.8rem;
+        }
+        .service-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: #c8d6ff;
+        }
+        .service-item p {
+            color: #7a8fc7;
+            font-size: 0.9rem;
+        }
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+        .package-card {
+            background: #0c0f20;
+            padding: 2rem 1.8rem;
+            border-radius: 24px;
+            border: 1px solid #28305a;
+            transition: border 0.25s, transform 0.2s, box-shadow 0.25s;
+            text-align: center;
+        }
+        .package-card:hover {
+            border-color: #6c8cff;
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(40, 60, 160, 0.3);
+        }
+        .package-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0.8rem 0 0.2rem;
+            color: #c8d6ff;
+        }
+        .package-card .price small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #7a8fc7;
+        }
+        .package-card .plan-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #d6e0ff;
+        }
+        .package-card ul {
+            margin: 1.5rem 0;
+            text-align: left;
+            list-style: none;
+            color: #b0c4f0;
+        }
+        .package-card ul li {
+            padding: 0.3rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .package-card ul li i {
+            color: #6c8cff;
+            width: 1.2rem;
+            filter: drop-shadow(0 0 4px rgba(80, 120, 255, 0.2));
+        }
+        .package-card .btn-outline-plan {
+            background: transparent;
+            border: 1px solid #3a4a8a;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #c8d6ff;
+            cursor: pointer;
+            transition: 0.25s;
+            margin-top: 0.5rem;
+        }
+        .package-card .btn-outline-plan:hover {
+            border-color: #6c8cff;
+            background: rgba(80, 120, 255, 0.08);
+            box-shadow: 0 0 16px rgba(80, 120, 255, 0.1);
+        }
+        .package-card.full-package {
+            border-color: #fbbf24;
+            box-shadow: 0 0 30px rgba(251, 191, 36, 0.15);
+            background: linear-gradient(145deg, #1a1f30, #0c0f20);
+        }
+        .package-card.full-package .plan-name {
+            color: #fbbf24;
+        }
+        .package-card.full-package .price {
+            color: #fbbf24;
+        }
+        .package-card.full-package .btn-outline-plan {
+            border-color: #fbbf24;
+            color: #fbbf24;
+        }
+        .package-card.full-package .btn-outline-plan:hover {
+            background: rgba(251, 191, 36, 0.1);
+            border-color: #fbbf24;
+        }
+        .badge-full {
+            display: inline-block;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0a0c1a;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            margin-left: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .discount-section {
+            background: #0c0f20;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            border: 1px solid #28305a;
+            margin-bottom: 1.5rem;
+        }
+        .discount-section .discount-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .discount-section .discount-header i {
+            color: #fbbf24;
+            font-size: 1.2rem;
+        }
+        .discount-section .discount-header span {
+            color: #c8d6ff;
+            font-weight: 500;
+        }
+        .discount-section .discount-badge {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0a0c1a;
+            font-weight: 700;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            margin-left: auto;
+        }
+        .discount-section .discount-note {
+            color: #5a6fa0;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+        }
+        .discount-section .discount-note strong {
+            color: #fbbf24;
+        }
+        .session-dates-container {
+            background: #0c0f20;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            border: 1px solid #28305a;
+            margin-bottom: 1.5rem;
+            display: none;
+        }
+        .session-dates-container.visible {
+            display: block;
+        }
+        .session-dates-container .session-date-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #1a1f30;
+        }
+        .session-dates-container .session-date-item:last-child {
+            border-bottom: none;
+        }
+        .session-dates-container .session-date-item label {
+            min-width: 100px;
+            color: #c8d6ff;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .session-dates-container .session-date-item input {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            background: #0a0c1a;
+            border: 1px solid #28305a;
+            border-radius: 12px;
+            color: #e8eeff;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .session-dates-container .session-date-item input:focus {
+            border-color: #6c8cff;
+            box-shadow: 0 0 0 2px rgba(80, 120, 255, 0.15);
+        }
+        .session-dates-container .session-date-item input:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            background: #1a1f30;
+            border-color: #3a3f4a;
+        }
+        .session-dates-container .session-date-item .booked-badge {
+            background: #ff4d6d;
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 0.15rem 0.6rem;
+            border-radius: 40px;
+            white-space: nowrap;
+        }
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        .payment-method-option {
+            flex: 1;
+            min-width: 100px;
+            padding: 0.8rem 1rem;
+            background: #0c0f20;
+            border: 2px solid #28305a;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: border 0.25s, background 0.25s;
+            color: #b0c4f0;
+        }
+        .payment-method-option:hover {
+            border-color: #6c8cff;
+        }
+        .payment-method-option.selected {
+            border-color: #6c8cff;
+            background: rgba(80, 120, 255, 0.08);
+            color: #e8eeff;
+        }
+        .payment-method-option i {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        .payment-method-option .method-name {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .payment-details {
+            background: #0c0f20;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            border: 1px solid #28305a;
+            display: none;
+        }
+        .payment-details.visible {
+            display: block;
+        }
+        .payment-details .form-row {
+            gap: 0.8rem;
+        }
+        .payment-details .form-group {
+            margin-bottom: 0.8rem;
+        }
+        .payment-details .form-group label {
+            font-size: 0.8rem;
+        }
+        .payment-details .form-group input {
+            padding: 0.6rem 0.8rem;
+            font-size: 0.9rem;
+        }
+        .total-amount {
+            background: linear-gradient(135deg, #1a1f30, #0c0f20);
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            border: 1px solid #6c8cff;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .total-amount .total-label {
+            color: #b0c4f0;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .total-amount .total-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #6c8cff;
+        }
+        .total-amount .total-price .currency {
+            font-size: 1.2rem;
+            margin-right: 0.2rem;
+        }
+        .total-amount .total-price .original-price {
+            font-size: 1rem;
+            color: #5a6fa0;
+            text-decoration: line-through;
+            margin-right: 0.8rem;
+            font-weight: 400;
+        }
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        .work-item {
+            background: #0c0f20;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #28305a;
+            transition: border 0.25s, transform 0.2s;
+        }
+        .work-item:hover {
+            border-color: #6c8cff;
+            transform: translateY(-5px);
+        }
+        .work-item .work-thumb {
+            height: 180px;
+            background: #141a33;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #6c8cff;
+            border-bottom: 1px solid #28305a;
+        }
+        .work-item .work-info {
+            padding: 1.2rem 1.5rem;
+        }
+        .work-item .work-info h3 {
+            color: #c8d6ff;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        .work-item .work-info p {
+            color: #7a8fc7;
+            font-size: 0.9rem;
+        }
+        .work-item .work-info .work-tag {
+            display: inline-block;
+            background: rgba(80, 120, 255, 0.15);
+            color: #6c8cff;
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .feedback-form-card {
+            background: #0c0f20;
+            padding: 1.8rem;
+            border-radius: 16px;
+            border: 1px solid #28305a;
+        }
+        .feedback-form-card .form-group textarea {
+            min-height: 100px;
+        }
+        .feedback-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+        .feedback-list::-webkit-scrollbar {
+            width: 4px;
+        }
+        .feedback-list::-webkit-scrollbar-track {
+            background: #0c0f20;
+            border-radius: 8px;
+        }
+        .feedback-list::-webkit-scrollbar-thumb {
+            background: #6c8cff;
+            border-radius: 8px;
+        }
+        .feedback-item {
+            background: #0c0f20;
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            border: 1px solid #28305a;
+            transition: border 0.2s;
+        }
+        .feedback-item:hover {
+            border-color: #6c8cff;
+        }
+        .feedback-item .stars {
+            color: #fbbf24;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+        .feedback-item .fb-author {
+            color: #7a8fc7;
+            font-size: 0.85rem;
+            margin-top: 0.3rem;
+        }
+        .feedback-item .fb-author span {
+            color: #6c8cff;
+            font-weight: 500;
+        }
+        .feedback-item .fb-text {
+            color: #c8d6ff;
+            margin: 0.3rem 0 0.2rem;
+            font-size: 0.95rem;
+        }
+        .feedback-item .fb-date {
+            color: #5a6fa0;
+            font-size: 0.7rem;
+        }
+        .btn-feedback {
+            background: linear-gradient(135deg, #4a6cf7, #7c5cfc);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            box-shadow: 0 4px 16px rgba(74, 108, 247, 0.3);
+        }
+        .btn-feedback:hover {
+            opacity: 0.9;
+        }
+        .empty-feedback {
+            color: #5a6fa0;
+            text-align: center;
+            padding: 2rem 0;
+            font-style: italic;
+        }
+        .currency-symbol {
+            font-size: 1.8rem;
+            vertical-align: super;
+            margin-right: 0.1rem;
+        }
+        .toast-message {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: #141a33;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            border: 1px solid #6c8cff;
+            color: #e8eeff;
+            font-weight: 500;
+            box-shadow: 0 12px 48px rgba(10, 15, 50, 0.8);
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.3s ease;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .toast-message.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+        .toast-message i {
+            color: #6c8cff;
+            font-size: 1.6rem;
+        }
+        footer {
+            padding: 2rem 0 1.5rem;
+            border-top: 1px solid #1a224a;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            color: #6a7fb5;
+            font-size: 0.9rem;
+            margin-top: 3rem;
+        }
+        footer .social i {
+            font-size: 1.4rem;
+            margin-left: 1.2rem;
+            color: #6a7fb5;
+            transition: color 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+        footer .social i:hover {
+            color: #8aa8ff;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 960px) {
+            .hero-booking {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            .feedback-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1.2rem;
+            }
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .booking-card {
+                padding: 1.5rem;
+            }
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+            .feedback-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 1.2rem;
+            }
+            .session-dates-container .session-date-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.3rem;
+            }
+            .session-dates-container .session-date-item label {
+                min-width: auto;
+            }
+            .payment-methods {
+                flex-direction: column;
+            }
+            .payment-method-option {
+                min-width: auto;
+            }
+            .total-amount {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- navigation -->
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-bolt"></i> <span class="d1">D1</span> Streams
+            </div>
+            <div class="nav-links">
+                <a href="#" id="servicesLink">Services</a>
+                <a href="#" id="packagesLink">Packages</a>
+                <a href="#" id="worksLink">Our Works</a>
+                <a href="#" id="feedbackLink">Feedback</a>
+                <a href="#" class="nav-cta" id="navBookBtn"><i class="fas fa-calendar-check"></i> Book now</a>
+            </div>
+        </nav>
+
+        <!-- hero + booking form -->
+        <section class="hero-booking">
+            <div class="hero-text">
+                <h1>Book your <span>live stream</span> or recording</h1>
+                <p>Professional studio, remote production, or hybrid — we capture your moment with crystal clarity.</p>
+                <ul class="hero-features">
+                    <li><i class="fas fa-check-circle"></i> 4K HDR streaming & recording</li>
+                    <li><i class="fas fa-check-circle"></i> Multi-camera setups & ISO records</li>
+                    <li><i class="fas fa-check-circle"></i> Real-time switching & graphics</li>
+                    <li><i class="fas fa-check-circle"></i> Instant replay & highlight reels</li>
+                </ul>
+            </div>
+
+            <!-- booking form -->
+            <div class="booking-card" id="bookingForm">
+                <h2>📅 Request a booking</h2>
+                <p class="sub">Fill in the details and we'll get back within 24 hours.</p>
+
+                <form id="bookingFormElement">
+                    <div class="form-group">
+                        <label for="fullName">Full name</label>
+                        <input type="text" id="fullName" name="name" placeholder="e.g. Alex Rivera" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" id="email" name="email" placeholder="alex@example.com" required />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="eventType">Service type</label>
+                            <select id="eventType" name="eventType" required>
+                                <option value="">Select...</option>
+                                <option value="live-stream">Live Stream</option>
+                                <option value="recording">Studio Recording</option>
+                                <option value="hybrid">Hybrid (stream + record)</option>
+                                <option value="virtual">Virtual Event</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="eventCategory">What type of event is this?</label>
+                            <select id="eventCategory" name="eventCategory" required>
+                                <option value="">Select event category...</option>
+                                <option value="church-service">Church Service</option>
+                                <option value="burial-funeral">Burial / Funeral</option>
+                                <option value="wedding">Wedding</option>
+                                <option value="concert">Concert / Music</option>
+                                <option value="corporate">Corporate / Business</option>
+                                <option value="graduation">Graduation</option>
+                                <option value="charity">Charity / Gala</option>
+                                <option value="sports">Sports / Esports</option>
+                                <option value="baby-naming">Baby Naming / Christening</option>
+                                <option value="birthday">Birthday / Celebration</option>
+                                <option value="conference">Conference / Summit</option>
+                                <option value="virtual-event">Virtual Event</option>
+                                <option value="other">Other (please specify in requirements)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Package Selection -->
+                    <div class="form-group">
+                        <label for="packageSelect">Select package</label>
+                        <select id="packageSelect" name="packageSelect" required>
+                            <option value="">Select a package...</option>
+                            <option value="basic" data-price="700">Basic - £700/session</option>
+                            <option value="essential" data-price="1500">Essential - £1,500/session</option>
+                            <option value="pro" data-price="5000">Pro - £5,000/session</option>
+                            <option value="enterprise" data-price="15000">Enterprise - £15,000/session</option>
+                            <option value="full" data-price="25000">Full Package - £25,000/session</option>
+                        </select>
+                    </div>
+
+                    <!-- Number of Sessions -->
+                    <div class="form-group">
+                        <label for="numSessions">Number of sessions (back-to-back)</label>
+                        <select id="numSessions" name="numSessions">
+                            <option value="1">1 session</option>
+                            <option value="2">2 sessions</option>
+                            <option value="3">3 sessions</option>
+                            <option value="4">4 sessions</option>
+                            <option value="5">5 sessions</option>
+                            <option value="6">6+ sessions</option>
+                        </select>
+                    </div>
+
+                    <!-- Total Amount -->
+                    <div class="total-amount" id="totalAmount">
+                        <span class="total-label">Total Amount:</span>
+                        <span class="total-price">
+                            <span class="currency">£</span>
+                            <span id="totalPriceDisplay">0.00</span>
+                            <span class="original-price" id="originalPriceDisplay"></span>
+                        </span>
+                    </div>
+
+                    <!-- Session Dates -->
+                    <div class="session-dates-container" id="sessionDatesContainer">
+                        <p style="color: #c8d6ff; font-weight: 500; margin-bottom: 0.8rem; font-size: 0.95rem;">
+                            <i class="fas fa-calendar-alt" style="color: #6c8cff; margin-right: 0.5rem;"></i>
+                            Select date for each session <span style="color: #ff4d6d; font-weight: 400;">(booked dates are disabled)</span>
+                        </p>
+                        <div id="sessionDatesList"></div>
+                    </div>
+
+                    <!-- Google Calendar Availability -->
+                    <div class="form-group">
+                        <label>Check availability</label>
+                        <button type="button" class="btn-calendar" id="calendarBtn">
+                            <i class="fab fa-google"></i> Check D1 Streams Calendar
+                        </button>
+                        <p style="color: #5a6fa0; font-size: 0.8rem; margin-top: 0.3rem;">
+                            <i class="fas fa-info-circle"></i> Opens the D1 Streams Google Calendar (dammyondnet@gmail.com) to see available time slots.
+                        </p>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="form-group">
+                        <label>Payment method</label>
+                        <div class="payment-methods" id="paymentMethods">
+                            <div class="payment-method-option selected" data-method="card">
+                                <i class="fas fa-credit-card"></i>
+                                <span class="method-name">Card</span>
+                            </div>
+                            <div class="payment-method-option" data-method="apple">
+                                <i class="fab fa-apple-pay"></i>
+                                <span class="method-name">Apple Pay</span>
+                            </div>
+                            <div class="payment-method-option" data-method="google">
+                                <i class="fab fa-google-pay"></i>
+                                <span class="method-name">Google Pay</span>
+                            </div>
+                            <div class="payment-method-option" data-method="paypal">
+                                <i class="fab fa-paypal"></i>
+                                <span class="method-name">PayPal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Payment Details -->
+                    <div class="payment-details visible" id="cardPaymentDetails">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardNumber">Card number</label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" />
+                            </div>
+                            <div class="form-group">
+                                <label for="cardExpiry">Expiry date</label>
+                                <input type="text" id="cardExpiry" placeholder="MM/YY" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="cardCvv">CVV</label>
+                                <input type="text" id="cardCvv" placeholder="123" />
+                            </div>
+                            <div class="form-group">
+                                <label for="cardName">Name on card</label>
+                                <input type="text" id="cardName" placeholder="John Doe" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Apple Pay Details -->
+                    <div class="payment-details" id="applePaymentDetails">
+                        <p style="color: #7a8fc7; font-size: 0.9rem;">
+                            <i class="fas fa-info-circle" style="color: #6c8cff;"></i>
+                            You'll be redirected to Apple Pay to complete your payment after booking.
+                        </p>
+                    </div>
+
+                    <!-- Google Pay Details -->
+                    <div class="payment-details" id="googlePaymentDetails">
+                        <p style="color: #7a8fc7; font-size: 0.9rem;">
+                            <i class="fas fa-info-circle" style="color: #6c8cff;"></i>
+                            You'll be redirected to Google Pay to complete your payment after booking.
+                        </p>
+                    </div>
+
+                    <!-- PayPal Details -->
+                    <div class="payment-details" id="paypalPaymentDetails">
+                        <p style="color: #7a8fc7; font-size: 0.9rem;">
+                            <i class="fas fa-info-circle" style="color: #6c8cff;"></i>
+                            You'll be redirected to PayPal to complete your payment after booking.
+                        </p>
+                    </div>
+
+                    <!-- Discount display -->
+                    <div class="discount-section" id="discountSection">
+                        <div class="discount-header">
+                            <i class="fas fa-tags"></i>
+                            <span>Multi-session discount</span>
+                            <span class="discount-badge" id="discountBadge">0% OFF</span>
+                        </div>
+                        <div class="discount-note" id="discountNote">
+                            Book <strong>2 or more</strong> sessions back-to-back and get <strong>10% off</strong> each session.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Special requirements</label>
+                        <textarea id="message" name="message" placeholder="Number of cameras, green screen, remote guests..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-book" id="bookSubmitBtn">
+                        <i class="fas fa-paper-plane"></i> Send booking request
+                    </button>
+                </form>
+                <p style="color: #5a6fa0; font-size: 0.8rem; margin-top: 1rem; text-align: center;">
+                    <i class="fas fa-lock" style="margin-right: 6px;"></i> Your data is secure. We'll confirm availability via email within 24 hours.
+                </p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <div class="section-toggle" id="servicesSection">
+            <h2><i class="fas fa-cogs" style="color: #6c8cff; margin-right: 0.8rem;"></i>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-item"><i class="fas fa-video"></i><h3>Live Streaming</h3><p>Professional live streaming for events, concerts, webinars, and more. 4K HDR quality.</p></div>
+                <div class="service-item"><i class="fas fa-microphone-alt"></i><h3>Studio Recording</h3><p>Multi-track audio recording, voiceovers, podcasts, and music production in our studio.</p></div>
+                <div class="service-item"><i class="fas fa-people-arrows"></i><h3>Hybrid Events</h3><p>Combine in-person and virtual audiences with interactive features and real-time engagement.</p></div>
+                <div class="service-item"><i class="fas fa-users"></i><h3>Virtual Events</h3><p>Zoom-like virtual events with custom branding, breakout rooms, and audience participation tools.</p></div>
+                <div class="service-item"><i class="fas fa-sliders-h"></i><h3>Live Switching &amp; Graphics</h3><p>Real-time video switching, custom overlays, lower thirds, and animated graphics.</p></div>
+                <div class="service-item"><i class="fas fa-cloud-upload-alt"></i><h3>Multi-Platform Distribution</h3><p>Stream simultaneously to YouTube, Facebook, Twitch, LinkedIn, and custom RTMP destinations.</p></div>
+                <div class="service-item"><i class="fas fa-hdd"></i><h3>4K Recording &amp; ISO</h3><p>Record each camera angle individually (ISO) for post-production flexibility.</p></div>
+                <div class="service-item"><i class="fas fa-headset"></i><h3>Dedicated Production</h3><p>Full production team with director, camera operators, audio engineer, and producer.</p></div>
+            </div>
+        </div>
+
+        <!-- Packages Section -->
+        <div class="section-toggle" id="packagesSection">
+            <h2><i class="fas fa-box" style="color: #6c8cff; margin-right: 0.8rem;"></i>Production Packages</h2>
+            <p style="color: #7a8fc7; margin-bottom: 2rem;">Flexible options for every scale — from solo creators to enterprise events.</p>
+            <div class="packages-grid">
+                <div class="package-card"><div class="plan-name">Basic</div><div class="price"><span class="currency-symbol">£</span>700 <small>/ session</small></div><ul><li><i class="fas fa-video"></i> Webcam / phone camera</li><li><i class="fas fa-microphone"></i> Built-in audio</li><li><i class="fas fa-cloud-upload-alt"></i> 720p stream</li><li><i class="fas fa-clock"></i> 2 hours recording</li><li><i class="fas fa-users"></i> Virtual event (Zoom-like)</li></ul><button class="btn-outline-plan book-package-btn" data-package="basic" data-price="700">Select</button></div>
+                <div class="package-card"><div class="plan-name">Essential</div><div class="price"><span class="currency-symbol">£</span>1,500 <small>/ session</small></div><ul><li><i class="fas fa-video"></i> Dual camera setup</li><li><i class="fas fa-microphone"></i> Professional audio + lavalier</li><li><i class="fas fa-cloud-upload-alt"></i> 1080p stream</li><li><i class="fas fa-clock"></i> 3 hours recording</li></ul><button class="btn-outline-plan book-package-btn" data-package="essential" data-price="1500">Select</button></div>
+                <div class="package-card" style="border-color: #6c8cff; box-shadow: 0 0 24px rgba(80, 120, 255, 0.08);"><div class="plan-name">Pro <span style="background: linear-gradient(135deg, #4a6cf7, #7c5cfc); font-size: 0.6rem; padding: 0.2rem 0.8rem; border-radius: 40px; margin-left: 6px; color: white;">popular</span></div><div class="price"><span class="currency-symbol">£</span>5,000 <small>/ session</small></div><ul><li><i class="fas fa-video"></i> 3-camera setup</li><li><i class="fas fa-sliders-h"></i> Live switching & graphics</li><li><i class="fas fa-hdd"></i> 4K recording + ISO</li><li><i class="fas fa-users"></i> Up to 4 remote guests</li></ul><button class="btn-outline-plan book-package-btn" data-package="pro" data-price="5000">Select</button></div>
+                <div class="package-card"><div class="plan-name">Enterprise</div><div class="price"><span class="currency-symbol">£</span>15,000 <small>/ session</small></div><ul><li><i class="fas fa-camera"></i> 6+ cameras</li><li><i class="fas fa-globe"></i> Multi-platform distribution</li><li><i class="fas fa-headset"></i> Dedicated producer</li><li><i class="fas fa-clock"></i> 6 hours recording</li><li><i class="fas fa-users"></i> Virtual event (Zoom-like)</li></ul><button class="btn-outline-plan book-package-btn" data-package="enterprise" data-price="15000">Select</button></div>
+                <div class="package-card full-package"><div class="plan-name">Full Package <span class="badge-full">Best Value</span></div><div class="price"><span class="currency-symbol">£</span>25,000 <small>/ session</small></div><ul><li><i class="fas fa-video"></i> All cameras & setups (6+ cameras)</li><li><i class="fas fa-microphone"></i> Full professional audio + lavalier</li><li><i class="fas fa-cloud-upload-alt"></i> 4K HDR stream</li><li><i class="fas fa-clock"></i> Up to 8 hours recording</li><li><i class="fas fa-sliders-h"></i> Live switching & graphics</li><li><i class="fas fa-hdd"></i> 4K recording + ISO (all cameras)</li><li><i class="fas fa-globe"></i> Multi-platform distribution</li><li><i class="fas fa-headset"></i> Dedicated producer & production team</li><li><i class="fas fa-users"></i> Virtual event (Zoom-like) + remote guests</li><li><i class="fas fa-check-circle"></i> <strong>Everything included</strong> — all services combined</li></ul><button class="btn-outline-plan book-package-btn" data-package="full" data-price="25000">Select</button></div>
+            </div>
+        </div>
+
+        <!-- Our Works Section -->
+        <div class="section-toggle" id="worksSection">
+            <h2><i class="fas fa-briefcase" style="color: #6c8cff; margin-right: 0.8rem;"></i>Our Works</h2>
+            <p style="color: #7a8fc7; margin-bottom: 2rem;">We handle any type of event — from intimate gatherings to large-scale productions.</p>
+            <div class="works-grid">
+                <div class="work-item"><div class="work-thumb"><i class="fas fa-church"></i></div><div class="work-info"><h3>Church Service Live Stream</h3><p>Multi-camera 4K live stream for Sunday services with worship and sermon.</p><span class="work-tag">Live Stream</span></div></div>
+                <div class="work-item"><div class="work-thumb"><i class="fas fa-cross"></i></div><div class="work-info"><h3>Burial Service Recording</h3><p>Compassionate multi-camera recording and live stream for funeral services.</p><span class="work-tag">Recording</span></div></div>
+                <div class="work-item"><div class="work-thumb"><i class="fas fa-ring"></i></div><div class="work-info"><h3>Wedding Ceremony</h3><p>Beautiful 4K live stream and recording of wedding ceremonies with multiple camera angles.</p><span class="work-tag">Live Stream</span></div></div>
+                <div class="work-item"><div class="work-thumb"><i class="fas fa-music"></i></div><div class="work-info"><h3>Music Concert</h3><p>Multi-camera live stream with 4K HDR for 50,000+ online viewers.</p><span class="work-tag">Live Stream</span></div></div>
+                <div class="work-item"><div class="work-thumb"><i class="fas fa-bullhorn"></i></div><div class="work-info"><h3>Corporate Conference</h3><p>Hybrid event with 6 speakers, live switching, and real-time audience Q&A.</p><span class="work-tag">Hybrid</span></div></div>
+                <div class="work-item"><div class="work-thumb"><i class="fas fa-handshake"></i></div><div class="work-info"><h3>Corporate Summit</h3><p>Virtual event with Zoom-like platform, breakout rooms, and custom branding.</p><span class="work-tag">Virtual Event</span></div></div>
+                <div class="work-item"><div class="work-thumb"><i class="fas fa-trophy"></i></div><div class="work-info"><h3>Esports Tournament</h3><p>Live streamed gaming tournament with 4K ISO recording and instant replays.</p><span class="work-tag">Live Stream</span></div></div>
+                <div class="work-item"><div class="work-thumb"><i class="fas fa-microphone"></i></div><div class="work-info"><h3>Charity Gala</h3><p>Hybrid event with live auction, remote celebrity guests, and multi-platform distribution.</p><span class="work-tag">Hybrid</span></div></div>
+                <div class="work-item"><div class="work-thumb"><i class="fas fa-graduation-cap"></i></div><div class="work-info"><h3>Graduation Ceremony</h3><p>Multi-camera live stream and recording for school and university graduations.</p><span class="work-tag">Live Stream</span></div></div>
+                <div class="work-item"><div class="work-thumb"><i class="fas fa-baby"></i></div><div class="work-info"><h3>Baby Naming Ceremony</h3><p>Warm and professional recording and live stream for baby naming and christening events.</p><span class="work-tag">Recording</span></div></div>
+            </div>
+        </div>
+
+        <!-- Feedback Section -->
+        <div class="section-toggle" id="feedbackSection">
+            <h2><i class="fas fa-comment-dots" style="color: #6c8cff; margin-right: 0.8rem;"></i>Leave Your Feedback</h2>
+            <p style="color: #7a8fc7; margin-bottom: 1.5rem;">We value your opinion. Share your experience with us.</p>
+            <div class="feedback-grid">
+                <div class="feedback-form-card">
+                    <form id="feedbackForm">
+                        <div class="form-group"><label for="fbName">Your name</label><input type="text" id="fbName" name="name" placeholder="e.g. Jane Doe" required /></div>
+                        <div class="form-group"><label for="fbRating">Rating</label><select id="fbRating" name="rating" required><option value="5">★★★★★ (5)</option><option value="4">★★★★☆ (4)</option><option value="3">★★★☆☆ (3)</option><option value="2">★★☆☆☆ (2)</option><option value="1">★☆☆☆☆ (1)</option></select></div>
+                        <div class="form-group"><label for="fbMessage">Your feedback</label><textarea id="fbMessage" name="message" placeholder="Tell us about your experience..." required></textarea></div>
+                        <button type="submit" class="btn-feedback"><i class="fas fa-paper-plane" style="margin-right: 0.6rem;"></i>Submit Feedback</button>
+                    </form>
+                </div>
+                <div>
+                    <h3 style="color: #c8d6ff; margin-bottom: 0.8rem; font-weight: 500;">Recent Feedback</h3>
+                    <div class="feedback-list" id="feedbackList"><div class="empty-feedback">Loading feedback...</div></div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div>© 2026 D1 Streams — live streaming & recording studio</div>
+            <div class="social"><i class="fab fa-twitter"></i><i class="fab fa-youtube"></i><i class="fab fa-instagram"></i><i class="fab fa-linkedin"></i></div>
+        </footer>
+    </div>
+
+    <!-- toast notification -->
+    <div id="toastMessage" class="toast-message">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastText">Booking request sent! We'll contact you shortly.</span>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // API base URL - Update this to your deployed backend URL
+            const API_BASE = window.location.origin;
+
+            // --- BOOKED DATES (simulated from backend) ---
+            let bookedDates = [
+                '2026-07-05',
+                '2026-07-10',
+                '2026-07-15',
+                '2026-07-20',
+                '2026-07-25'
+            ];
+
+            // Package prices mapping
+            const packagePrices = {
+                'basic': 700,
+                'essential': 1500,
+                'pro': 5000,
+                'enterprise': 15000,
+                'full': 25000
+            };
+
+            // DOM refs
+            const bookingForm = document.getElementById('bookingFormElement');
+            const fullName = document.getElementById('fullName');
+            const email = document.getElementById('email');
+            const eventType = document.getElementById('eventType');
+            const eventCategory = document.getElementById('eventCategory');
+            const packageSelect = document.getElementById('packageSelect');
+            const numSessions = document.getElementById('numSessions');
+            const message = document.getElementById('message');
+            const toast = document.getElementById('toastMessage');
+            const toastText = document.getElementById('toastText');
+            const bookSubmitBtn = document.getElementById('bookSubmitBtn');
+            const discountBadge = document.getElementById('discountBadge');
+            const discountNote = document.getElementById('discountNote');
+            const sessionDatesContainer = document.getElementById('sessionDatesContainer');
+            const sessionDatesList = document.getElementById('sessionDatesList');
+            const totalPriceDisplay = document.getElementById('totalPriceDisplay');
+            const originalPriceDisplay = document.getElementById('originalPriceDisplay');
+            const calendarBtn = document.getElementById('calendarBtn');
+            const paymentOptions = document.querySelectorAll('.payment-method-option');
+            const cardPaymentDetails = document.getElementById('cardPaymentDetails');
+            const applePaymentDetails = document.getElementById('applePaymentDetails');
+            const googlePaymentDetails = document.getElementById('googlePaymentDetails');
+            const paypalPaymentDetails = document.getElementById('paypalPaymentDetails');
+            const feedbackForm = document.getElementById('feedbackForm');
+            const fbName = document.getElementById('fbName');
+            const fbRating = document.getElementById('fbRating');
+            const fbMessage = document.getElementById('fbMessage');
+            const feedbackList = document.getElementById('feedbackList');
+            const servicesLink = document.getElementById('servicesLink');
+            const packagesLink = document.getElementById('packagesLink');
+            const worksLink = document.getElementById('worksLink');
+            const feedbackLink = document.getElementById('feedbackLink');
+            const servicesSection = document.getElementById('servicesSection');
+            const packagesSection = document.getElementById('packagesSection');
+            const worksSection = document.getElementById('worksSection');
+            const feedbackSection = document.getElementById('feedbackSection');
+
+            // ----- Calculate total amount -----
+            function calculateTotal() {
+                const selectedPackage = packageSelect.value;
+                const sessions = parseInt(numSessions.value);
+                
+                if (!selectedPackage || !packagePrices[selectedPackage]) {
+                    totalPriceDisplay.textContent = '0.00';
+                    originalPriceDisplay.textContent = '';
+                    return 0;
+                }
+
+                const pricePerSession = packagePrices[selectedPackage];
+                let total = pricePerSession * sessions;
+                let discount = 0;
+
+                if (sessions >= 2) {
+                    discount = total * 0.10;
+                    total = total - discount;
+                    originalPriceDisplay.textContent = `£${(pricePerSession * sessions).toFixed(2)}`;
+                    originalPriceDisplay.style.display = 'inline';
+                } else {
+                    originalPriceDisplay.textContent = '';
+                    originalPriceDisplay.style.display = 'none';
+                }
+
+                totalPriceDisplay.textContent = total.toFixed(2);
+                return total;
+            }
+
+            // ----- Update discount display -----
+            function updateDiscount() {
+                const sessions = parseInt(numSessions.value);
+                if (sessions >= 2) {
+                    discountBadge.textContent = '10% OFF';
+                    discountBadge.style.background = 'linear-gradient(135deg, #fbbf24, #f59e0b)';
+                    discountBadge.style.color = '#0a0c1a';
+                    discountNote.innerHTML =
+                        '🎉 You\'re booking <strong>' + sessions + ' sessions</strong> back-to-back! You get <strong>10% off</strong> each session.';
+                } else {
+                    discountBadge.textContent = '0% OFF';
+                    discountBadge.style.background = '#3a3f4a';
+                    discountBadge.style.color = '#b0bccf';
+                    discountNote.innerHTML =
+                        'Book <strong>2 or more</strong> sessions back-to-back and get <strong>10% off</strong> each session.';
+                }
+                calculateTotal();
+                generateSessionDates();
+            }
+
+            // ----- Package "Select" buttons -----
+            const packageBtns = document.querySelectorAll('.book-package-btn');
+            packageBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const pkg = this.getAttribute('data-package');
+                    if (pkg && packageSelect) {
+                        const options = packageSelect.options;
+                        for (let i = 0; i < options.length; i++) {
+                            if (options[i].value === pkg) {
+                                packageSelect.value = pkg;
+                                break;
+                            }
+                        }
+                        document.getElementById('bookingForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        calculateTotal();
+                        updateDiscount();
+                        if (fullName) fullName.focus();
+                        showToast(`📦 "${this.closest('.package-card').querySelector('.plan-name').textContent.trim()}" package selected — complete the form to book.`, true);
+                    }
+                });
+            });
+
+            // ----- Event listeners -----
+            packageSelect.addEventListener('change', function() {
+                calculateTotal();
+                updateDiscount();
+            });
+
+            numSessions.addEventListener('change', function() {
+                calculateTotal();
+                updateDiscount();
+            });
+
+            // ----- Section toggles -----
+            function hideAllSections() {
+                servicesSection.classList.remove('active');
+                packagesSection.classList.remove('active');
+                worksSection.classList.remove('active');
+                feedbackSection.classList.remove('active');
+            }
+
+            servicesLink.addEventListener('click', function(e) { e.preventDefault();
+                hideAllSections();
+                servicesSection.classList.toggle('active');
+                if (servicesSection.classList.contains('active')) servicesSection.scrollIntoView({ behavior: 'smooth',
+                        block: 'start' }); });
+            packagesLink.addEventListener('click', function(e) { e.preventDefault();
+                hideAllSections();
+                packagesSection.classList.toggle('active');
+                if (packagesSection.classList.contains('active')) packagesSection.scrollIntoView({ behavior: 'smooth',
+                        block: 'start' }); });
+            worksLink.addEventListener('click', function(e) { e.preventDefault();
+                hideAllSections();
+                worksSection.classList.toggle('active');
+                if (worksSection.classList.contains('active')) worksSection.scrollIntoView({ behavior: 'smooth',
+                        block: 'start' }); });
+            feedbackLink.addEventListener('click', function(e) { e.preventDefault();
+                hideAllSections();
+                feedbackSection.classList.toggle('active');
+                if (feedbackSection.classList.contains('active')) { feedbackSection.scrollIntoView({ behavior: 'smooth',
+                        block: 'start' });
+                    loadFeedback(); } });
+
+            function showToast(text, isSuccess = true) {
+                toastText.textContent = text;
+                toast.classList.add('show');
+                clearTimeout(window.toastTimeout);
+                window.toastTimeout = setTimeout(() => { toast.classList.remove('show'); }, 5000);
+            }
+
+            // ----- Google Calendar -----
+            calendarBtn.addEventListener('click', function() {
+                const calendarUrl = `https://calendar.google.com/calendar/u/0/r?tab=mc`;
+                window.open(calendarUrl, '_blank');
+                showToast('📅 Opening Google Calendar. Check availability and book a slot.', true);
+            });
+
+            // ----- Payment Method Selection -----
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+
+                    const method = this.dataset.method;
+                    cardPaymentDetails.classList.remove('visible');
+                    applePaymentDetails.classList.remove('visible');
+                    googlePaymentDetails.classList.remove('visible');
+                    paypalPaymentDetails.classList.remove('visible');
+
+                    if (method === 'card') {
+                        cardPaymentDetails.classList.add('visible');
+                    } else if (method === 'apple') {
+                        applePaymentDetails.classList.add('visible');
+                    } else if (method === 'google') {
+                        googlePaymentDetails.classList.add('visible');
+                    } else if (method === 'paypal') {
+                        paypalPaymentDetails.classList.add('visible');
+                    }
+                });
+            });
+
+            // ----- Generate session dates -----
+            function generateSessionDates() {
+                const count = parseInt(numSessions.value);
+                sessionDatesList.innerHTML = '';
+                if (count <= 1) {
+                    sessionDatesContainer.classList.remove('visible');
+                    return;
+                }
+                sessionDatesContainer.classList.add('visible');
+
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const year = tomorrow.getFullYear();
+                const month = String(tomorrow.getMonth() + 1).padStart(2, '0');
+                const day = String(tomorrow.getDate()).padStart(2, '0');
+                const defaultDate = `${year}-${month}-${day}`;
+
+                for (let i = 0; i < count; i++) {
+                    const div = document.createElement('div');
+                    div.className = 'session-date-item';
+
+                    const label = document.createElement('label');
+                    label.htmlFor = `sessionDate${i}`;
+                    label.textContent = `Session ${i + 1}`;
+
+                    const input = document.createElement('input');
+                    input.type = 'date';
+                    input.id = `sessionDate${i}`;
+                    input.name = `sessionDate${i}`;
+                    input.required = true;
+                    input.value = defaultDate;
+
+                    const checkDate = (dateStr) => {
+                        return bookedDates.includes(dateStr);
+                    };
+
+                    input.addEventListener('input', function() {
+                        if (checkDate(this.value)) {
+                            this.setCustomValidity('This date is already booked. Please select another date.');
+                            this.style.borderColor = '#ff4d6d';
+                            let badge = this.parentElement.querySelector('.booked-badge');
+                            if (!badge) {
+                                badge = document.createElement('span');
+                                badge.className = 'booked-badge';
+                                badge.textContent = 'BOOKED';
+                                this.parentElement.appendChild(badge);
+                            }
+                            badge.style.display = 'inline-block';
+                        } else {
+                            this.setCustomValidity('');
+                            this.style.borderColor = '';
+                            const badge = this.parentElement.querySelector('.booked-badge');
+                            if (badge) badge.style.display = 'none';
+                        }
+                    });
+
+                    setTimeout(() => {
+                        if (checkDate(input.value)) {
+                            input.setCustomValidity('This date is already booked. Please select another date.');
+                            input.style.borderColor = '#ff4d6d';
+                            const badge = document.createElement('span');
+                            badge.className = 'booked-badge';
+                            badge.textContent = 'BOOKED';
+                            div.appendChild(badge);
+                        }
+                    }, 100);
+
+                    input.addEventListener('change', function() {
+                        if (checkDate(this.value)) {
+                            this.setCustomValidity('This date is already booked. Please select another date.');
+                            this.style.borderColor = '#ff4d6d';
+                            let badge = this.parentElement.querySelector('.booked-badge');
+                            if (!badge) {
+                                badge = document.createElement('span');
+                                badge.className = 'booked-badge';
+                                badge.textContent = 'BOOKED';
+                                this.parentElement.appendChild(badge);
+                            }
+                            badge.style.display = 'inline-block';
+                        } else {
+                            this.setCustomValidity('');
+                            this.style.borderColor = '';
+                            const badge = this.parentElement.querySelector('.booked-badge');
+                            if (badge) badge.style.display = 'none';
+                        }
+                    });
+
+                    div.appendChild(label);
+                    div.appendChild(input);
+                    sessionDatesList.appendChild(div);
+                }
+            }
+
+            // ----- LOAD FEEDBACK -----
+            async function loadFeedback() {
+                try {
+                    const response = await fetch(`${API_BASE}/api/feedback`);
+                    if (!response.ok) throw new Error('Failed to load feedback');
+                    const feedbacks = await response.json();
+                    
+                    feedbackList.innerHTML = '';
+                    if (feedbacks.length === 0) {
+                        feedbackList.innerHTML = '<div class="empty-feedback">No feedback yet. Be the first to share your experience!</div>';
+                        return;
+                    }
+                    
+                    feedbacks.forEach(fb => {
+                        const stars = '★'.repeat(fb.rating) + '☆'.repeat(5 - fb.rating);
+                        const date = new Date(fb.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                        const item = document.createElement('div');
+                        item.className = 'feedback-item';
+                        item.innerHTML = `
+                            <div class="stars">${stars}</div>
+                            <div class="fb-text">"${fb.message}"</div>
+                            <div class="fb-author">— <span>${fb.name}</span> <span class="fb-date">· ${date}</span></div>
+                        `;
+                        feedbackList.appendChild(item);
+                    });
+                } catch (error) {
+                    console.error('Error loading feedback:', error);
+                    feedbackList.innerHTML = '<div class="empty-feedback">Failed to load feedback. Please refresh.</div>';
+                }
+            }
+
+            // ----- BOOKING FORM -----
+            bookingForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                if (!fullName.value.trim() || !email.value.trim() || !eventType.value || !eventCategory.value || !packageSelect.value) {
+                    showToast('⚠️ Please fill in all required fields including package selection.', false);
+                    return;
+                }
+
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(email.value.trim())) {
+                    showToast('⚠️ Please enter a valid email address.', false);
+                    return;
+                }
+
+                let paymentMethod = 'card';
+                paymentOptions.forEach(opt => {
+                    if (opt.classList.contains('selected')) {
+                        paymentMethod = opt.dataset.method;
+                    }
+                });
+
+                const sessions = parseInt(numSessions.value);
+                const sessionDates = [];
+                let allDatesValid = true;
+                let hasBookedDate = false;
+
+                for (let i = 0; i < sessions; i++) {
+                    const dateInput = document.getElementById(`sessionDate${i}`);
+                    if (dateInput) {
+                        if (!dateInput.value) {
+                            allDatesValid = false;
+                            break;
+                        }
+                        if (bookedDates.includes(dateInput.value)) {
+                            hasBookedDate = true;
+                            showToast(`⚠️ Session ${i+1} date (${dateInput.value}) is already booked. Please select another date.`, false);
+                            return;
+                        }
+                        sessionDates.push(dateInput.value);
+                    }
+                }
+
+                if (sessions > 1 && !allDatesValid) {
+                    showToast('⚠️ Please select a date for each session.', false);
+                    return;
+                }
+
+                if (hasBookedDate) return;
+
+                const totalAmount = calculateTotal();
+                const packageName = packageSelect.options[packageSelect.selectedIndex]?.text || 'Not specified';
+
+                const bookingData = {
+                    name: fullName.value.trim(),
+                    email: email.value.trim(),
+                    eventType: eventType.value,
+                    eventCategory: eventCategory.value,
+                    packageName: packageName,
+                    packageId: packageSelect.value,
+                    numSessions: sessions,
+                    sessionDates: sessionDates,
+                    paymentMethod: paymentMethod,
+                    totalAmount: totalAmount,
+                    message: message.value.trim() || '(none)',
+                    discountApplied: sessions >= 2
+                };
+
+                bookSubmitBtn.disabled = true;
+                bookSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Sending...';
+
+                try {
+                    const response = await fetch(`${API_BASE}/api/bookings`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(bookingData)
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'Server error');
+                    }
+
+                    const result = await response.json();
+                    
+                    sessionDates.forEach(date => {
+                        if (!bookedDates.includes(date)) {
+                            bookedDates.push(date);
+                        }
+                    });
+
+                    let discountMsg = '';
+                    if (sessions >= 2) {
+                        discountMsg = ' 10% multi-session discount applied for ' + sessions + ' sessions!';
+                    }
+                    showToast('✅ Booking confirmed! A confirmation email has been sent to you.' + discountMsg, true);
+                    bookingForm.reset();
+                    numSessions.value = '1';
+                    packageSelect.value = '';
+                    calculateTotal();
+                    updateDiscount();
+                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                    document.querySelector('.payment-method-option[data-method="card"]').classList.add('selected');
+                    cardPaymentDetails.classList.add('visible');
+                    applePaymentDetails.classList.remove('visible');
+                    googlePaymentDetails.classList.remove('visible');
+                    paypalPaymentDetails.classList.remove('visible');
+                } catch (error) {
+                    console.error('Booking error:', error);
+                    showToast('⚠️ ' + error.message, false);
+                } finally {
+                    bookSubmitBtn.disabled = false;
+                    bookSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send booking request';
+                }
+            });
+
+            // ---- Nav "Book now" scroll ----
+            const navBookBtn = document.getElementById('navBookBtn');
+            if (navBookBtn) {
+                navBookBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('bookingForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    if (fullName) fullName.focus();
+                });
+            }
+
+            // ----- FEEDBACK FORM -----
+            feedbackForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                const name = fbName.value.trim();
+                const rating = parseInt(fbRating.value);
+                const text = fbMessage.value.trim();
+                if (!name || !text) { showToast('⚠️ Please fill in your name and feedback.', false); return; }
+                
+                const feedbackData = { name, rating, message: text };
+                
+                try {
+                    const response = await fetch(`${API_BASE}/api/feedback`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(feedbackData)
+                    });
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || 'Server error');
+                    }
+                    
+                    const result = await response.json();
+                    showToast(result.message || '✅ Thank you for your feedback!', true);
+                    fbName.value = '';
+                    fbRating.value = '5';
+                    fbMessage.value = '';
+                    loadFeedback();
+                } catch (error) {
+                    console.error('Feedback error:', error);
+                    showToast('⚠️ ' + error.message, false);
+                }
+            });
+
+            // Initialize
+            calculateTotal();
+            updateDiscount();
+            console.log('📅 D1 Streams booking site connected to Python backend.');
+        })();
+    </script>
+</body>
+</html>
